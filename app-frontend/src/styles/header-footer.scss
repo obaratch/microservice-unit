@@ -1,0 +1,22 @@
+header {
+  a {
+    color: inherit;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  padding: 4px;
+  .logo {
+    display: inline-block;
+  }
+  .version,
+  .buildtime {
+    margin-left: 8px;
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+}
+
+footer {
+  text-align: center;
+}

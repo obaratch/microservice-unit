@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  microunit:
+    image: obalab/microservice-unit
+    build: .
+    container_name: microunit
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - CORS_DOMAIN=${HOSTNAME}
+    ports:
+      - 80:8080
+      - 3000:3000
+    volumes:
+      - ./config:/home/node/config
+      - ./log:/home/node/log

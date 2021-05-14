@@ -1,0 +1,11 @@
+@import "./font-awesome.scss";
+@import "./reset.scss";
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@import "./header-footer.scss";
