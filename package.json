@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start-dev": "run-p start-backend-dev start-frontend-dev",
-    "start": "run-p start-backend start-frontend",
+    "start": "run-p start-backend start-frontend >> log/all.log 2>&1",
     "start-frontend-dev": "vite --open",
     "build-frontend": "vite build --mode production",
     "start-frontend": "serve app-frontend/dist -l 8080",
