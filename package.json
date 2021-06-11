@@ -12,7 +12,7 @@
     "start": "run-p start-backend start-frontend >> log/all.log 2>&1",
     "start-frontend-dev": "vite --open",
     "build-frontend": "vite build --mode production",
-    "start-frontend": "serve app-frontend/dist -l 8080",
+    "start-frontend": "serve -s -n -u -l 8080 app-frontend/dist",
     "start-backend-dev": "cross-env NODE_ENV=dev nodemon app-backend/src/main.js | pino-pretty -c -t SYS:'yyyy-mm-dd HH:MM:ss.l' -i hostname",
     "start-backend": "node app-backend/src/main.js"
   },
