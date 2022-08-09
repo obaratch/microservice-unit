@@ -5,10 +5,10 @@
   "author": "Takashi Obara",
   "license": "MIT",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "scripts": {
-    "start-dev": "run-p start-backend-dev start-frontend-dev",
+    "dev": "run-p start-backend-dev start-frontend-dev",
     "start": "run-p start-backend start-frontend >> log/all.log 2>&1",
     "start-frontend-dev": "vite --open",
     "build-frontend": "vite build --mode production",
@@ -17,34 +17,34 @@
     "start-backend": "node app-backend/src/main.js"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.3",
+    "@fortawesome/fontawesome-free": "^6.1.2",
     "@vitejs/plugin-react-refresh": "^1.3.3",
-    "jest": "^27.0.4",
+    "jest": "^28.1.3",
     "modern-css-reset": "^1.4.0",
-    "nodemon": "^2.0.7",
-    "pino-pretty": "^5.0.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^5.2.0",
-    "sass": "^1.34.1",
-    "vite": "^2.3.7"
+    "nodemon": "^2.0.19",
+    "pino-pretty": "^8.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
+    "sass": "^1.54.3",
+    "vite": "^3.0.4"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "config": "^3.3.6",
+    "axios": "^0.27.2",
+    "config": "^3.3.7",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
-    "express": "^4.17.1",
-    "express-session": "^1.17.2",
-    "helmet": "^4.6.0",
-    "http-status-codes": "^2.1.4",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "helmet": "^5.1.1",
+    "http-status-codes": "^2.2.0",
     "lodash": "^4.17.21",
     "npm-run-all": "^4.1.5",
-    "pino": "^6.11.3",
-    "sequelize": "^6.6.2",
-    "serve": "^12.0.0",
-    "sqlite3": "^5.0.2",
-    "statman-stopwatch": "^2.12.0"
+    "pino": "^8.4.0",
+    "sequelize": "^6.21.3",
+    "serve": "^14.0.1",
+    "sqlite3": "^5.0.11",
+    "statman-stopwatch": "^2.13.0"
   },
   "nodemonConfig": {
     "ignore": [

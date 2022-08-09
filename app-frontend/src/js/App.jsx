@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
 import { HttpCilent } from "./utils/HttpUilts";
 import { APP_VERSION, BUILD_TIME } from "./config";
 
@@ -53,8 +53,10 @@ export const App = () => {
             <span className="buildtime">build: {BUILD_TIME.toISOString()}</span>
           </Link>
         </header>
-        <Route exact path="/" component={Home} />
-        <Route path="/users" component={Users} />
+        <Routes>
+          <Route exact path="/" component={Home} />
+          <Route path="/users" component={Users} />
+        </Routes>
       </BrowserRouter>
       <footer>(c) Obalab 2021</footer>
     </div>
