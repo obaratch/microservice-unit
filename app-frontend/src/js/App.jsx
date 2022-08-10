@@ -3,7 +3,9 @@ import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
 import { HttpCilent } from "./utils/HttpUilts";
 import { APP_VERSION, BUILD_TIME } from "./config";
 
-const Home = () => {
+import { requireLogin } from "./hocs/requireLogin";
+
+const Home = requireLogin(() => {
   return (
     <div className="main home">
       <h1>
@@ -16,7 +18,7 @@ const Home = () => {
       </ul>
     </div>
   );
-};
+});
 
 const Users = () => {
   const [users, setUsers] = React.useState();
@@ -39,10 +41,11 @@ const Users = () => {
 };
 
 export const App = () => {
-  React.useEffect(async () => {
-    const health = await HttpCilent.get("/healthcheck");
-    console.log({ health });
-  });
+  React.useEffect(() => {
+    HttpCilent.get("/healthcheck").then((health) => {
+      console.log({ health });
+    });
+  }, []);
   return (
     <div className="app-outer">
       <BrowserRouter>
@@ -54,7 +57,7 @@ export const App = () => {
           </Link>
         </header>
         <Routes>
-          <Route exact path="/" component={Home} />
+          <Route index component={Home} />
           <Route path="/users" component={Users} />
         </Routes>
       </BrowserRouter>
