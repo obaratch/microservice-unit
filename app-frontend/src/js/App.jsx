@@ -57,8 +57,8 @@ export const App = () => {
           </Link>
         </header>
         <Routes>
-          <Route index component={Home} />
-          <Route path="/users" component={Users} />
+          <Route index element={<Home />} />
+          <Route path="/users" element={<Users />} />
         </Routes>
       </BrowserRouter>
       <footer>(c) Obalab 2021</footer>
