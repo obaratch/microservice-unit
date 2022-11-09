@@ -1,5 +1,5 @@
 # BUILD
-FROM node:16-alpine AS build
+FROM node:18-alpine AS build
 
 WORKDIR /home/node
 
@@ -19,7 +19,7 @@ RUN chown -R node:node ./app-frontend
 RUN npm run build-frontend
 
 # PACK
-FROM node:16-alpine
+FROM node:18-alpine
 EXPOSE 80 3000
 
 WORKDIR /home/node
