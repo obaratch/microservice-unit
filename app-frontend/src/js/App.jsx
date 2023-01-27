@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import { HttpCilent } from "./utils/HttpUilts";
 import { APP_VERSION, BUILD_TIME } from "./config";
 
+import { SyncedStorePage } from "./SyncedStorePage";
+
 const Home = () => {
   return (
     <div className="main home">
@@ -12,6 +14,9 @@ const Home = () => {
       <ul className="menu">
         <li>
           <Link to="/users">Users</Link>
+        </li>
+        <li>
+          <Link to="/syncedstore">Synced-Store</Link>
         </li>
       </ul>
     </div>
@@ -55,6 +60,7 @@ export const App = () => {
         </header>
         <Route exact path="/" component={Home} />
         <Route path="/users" component={Users} />
+        <Route path="/syncedstore" component={SyncedStorePage} />
       </BrowserRouter>
       <footer>(c) Obalab 2021</footer>
     </div>
