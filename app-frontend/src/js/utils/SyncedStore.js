@@ -1,9 +1,9 @@
-import { HttpCilent } from "./HttpUilts";
+import { HttpClient } from "./HttpUilts";
 
 const NOOP = () => {};
 
 export function login({ id, passwd }) {
-  const resp = HttpCilent.post("/api/login", { id, passwd });
+  const resp = HttpClient.post("/api/login", { id, passwd });
   console.log({ resp });
 }
 

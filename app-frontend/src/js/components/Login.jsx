@@ -1,13 +1,15 @@
 import React from "react";
-import { HttpCilent } from "../utils/HttpUilts";
+import { HttpClient } from "../utils/HttpUilts";
 
 export const Login = () => {
   const refs = { loginid: React.createRef(), password: React.createRef() };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
+    const onetime = await HttpClient.get("api/login/onetime");
+    console.log({ onetime });
     const id = refs.loginid.current.value;
     const password = refs.password.current.value;
-    HttpCilent.post("api/login", { id, password });
+    HttpClient.post("api/login", { id, password });
   };
 
   return (

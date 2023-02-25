@@ -18,4 +18,4 @@ const post = (path, data, options) => ajax("POST", path, data, options);
 const put = (path, data, options) => ajax("POST", path, data, options);
 const del = (path, data, options) => ajax("POST", path, data, options);
 
-export const HttpCilent = { get, post, put, del };
+export const HttpClient = { get, post, put, del };

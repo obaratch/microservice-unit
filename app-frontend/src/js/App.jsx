@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
-import { HttpCilent } from "./utils/HttpUilts";
+import { HttpClient } from "./utils/HttpUilts";
 import { APP_VERSION, BUILD_TIME } from "./config";
 
 import { SyncedStorePage } from "./SyncedStorePage";
@@ -28,7 +28,7 @@ const Users = () => {
   const [users, setUsers] = React.useState();
   React.useEffect(async () => {
     if (users) return;
-    setUsers(await HttpCilent.get("/api/users"));
+    setUsers(await HttpClient.get("/api/users"));
   });
   console.log({ users });
   if (!users) return null;
@@ -46,7 +46,7 @@ const Users = () => {
 
 export const App = () => {
   React.useEffect(() => {
-    HttpCilent.get("/healthcheck").then((health) => {
+    HttpClient.get("/healthcheck").then((health) => {
       console.log({ health });
     });
   }, []);

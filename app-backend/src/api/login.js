@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const logger = require("../utils/logger");
+const CryptoUtils = require("../utils/CryptoUtils");
 
 router.get("/onetime", async (req, res) => {
-  // TODO: パスワード暗号化のための一時キー生成
+  const password = CryptoUtils.getRandomPassword();
+  res.send(password);
 });
 
 router.post("/", async (req, res) => {
