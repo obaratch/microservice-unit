@@ -1,0 +1,16 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"allowJs": false,
+		"checkJs": false
+	},
+	"include": [
+		"app-backend/src/**/*.ts",
+		"app-frontend/src/**/*.ts",
+		"app-frontend/src/**/*.tsx",
+		"app-frontend/test/**/*.ts",
+		"config/**/*.ts",
+		"vite.config.ts",
+		"vitest.config.ts"
+	]
+}
