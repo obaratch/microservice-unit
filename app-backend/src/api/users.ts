@@ -1,12 +1,18 @@
 import type { Context } from "hono";
 import { Hono } from "hono";
 import { DataTypes, Sequelize } from "sequelize";
+import { mkdirSync } from "node:fs";
+import { dirname } from "node:path";
 import logger from "../utils/logger.js";
 
 const router = new Hono();
+const storagePath = "sqlite/db.sqlite";
+
+mkdirSync(dirname(storagePath), { recursive: true });
+
 const sequelize = new Sequelize({
 	dialect: "sqlite",
-	storage: "sqlite/db.sqlite",
+	storage: storagePath,
 });
 
 const User = sequelize.define(
