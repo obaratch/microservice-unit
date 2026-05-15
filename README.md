@@ -53,7 +53,7 @@ npm install
 - `npm run dev`: start backend and frontend in development mode
 - `npm run stop`: force-quit local development processes
 - `npm run build`: build backend and frontend
-- `npm start`: build the backend and start backend/frontend servers
+- `npm start`: start backend/frontend servers
 - `npm test`: run Vitest
 - `npm run check`: run TypeScript, Biome, and oxlint checks
 - `npm run format`: format files with Biome
