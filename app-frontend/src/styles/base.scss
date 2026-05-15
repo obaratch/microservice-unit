@@ -1,7 +1,7 @@
-a {
-  text-decoration: none;
+@use "./colors.scss" as c;
 
-  &:hover {
-    text-decoration: underline;
-  }
+@layer base {
+	body {
+		color: c.$text;
+	}
 }

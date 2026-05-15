@@ -69,7 +69,7 @@ export const App = () => {
 					<Route path="/users" element={<Users />} />
 				</Routes>
 			</BrowserRouter>
-			<footer>(c) Obalab 2021</footer>
+			<footer>(c) Obalab 2026</footer>
 		</div>
 	);
 };
