@@ -5,5 +5,5 @@ import { createRoot } from "react-dom/client";
 import { App } from "./App";
 
 createRoot(document.getElementById("app-root")).render(
-  React.createElement(App)
+	React.createElement(App),
 );

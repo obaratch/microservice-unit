@@ -12,6 +12,7 @@
 ## 共通作業方針
 - 会話スレッドの冒頭や初回担当時は、 `project-status.md` を確認し、作業の一区切りごとに更新する。
 - npm はサンドボックス制約下にあるためすぐには実行せず、まず `npm.md` を参照する。
+- コードやドキュメントの編集後は `npm run check` と `npm run format` を実行する。
 
 ## 主要ドキュメント
 - [project-status.md](./docs/project-status.md): プロジェクトの現状や今後の予定

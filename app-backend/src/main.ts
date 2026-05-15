@@ -18,15 +18,15 @@ const app = new Hono();
 app.use(secureHeaders());
 const corsOrigin = new RegExp(CORS_DOMAIN);
 app.use(
-  cors({
-    origin: (origin) => (corsOrigin.test(origin) ? origin : null),
-  })
+	cors({
+		origin: (origin) => (corsOrigin.test(origin) ? origin : null),
+	}),
 );
 
 app.use(logger.honoLog);
 
 app.get("/healthcheck", (c) => {
-  return c.text("ok");
+	return c.text("ok");
 });
 
 app.route("/api/errortest", errorTestApi);
@@ -36,8 +36,8 @@ app.route("/api/users/", usersApi);
 
 const { port } = config.server;
 serve({ fetch: app.fetch, hostname: "127.0.0.1", port }, () => {
-  logger.info({ port }, "server listening");
+	logger.info({ port }, "server listening");
 
-  stopwatch.stop();
-  logger.info(`server started in ${stopwatch.time(0)}ms`);
+	stopwatch.stop();
+	logger.info(`server started in ${stopwatch.time(0)}ms`);
 });
