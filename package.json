@@ -1,7 +1,7 @@
 {
 	"name": "@obalab/microservice-unit",
 	"description": "a micro-webservice scaffold",
-	"version": "0.0.0",
+	"version": "0.2.0",
 	"type": "module",
 	"author": "Takashi Obara",
 	"license": "MIT",
