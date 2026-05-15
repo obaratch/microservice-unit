@@ -2,15 +2,15 @@ import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { secureHeaders } from "hono/secure-headers";
-import Stopwatch from "statman-stopwatch";
 import errorTestApi from "./api/errortest.js";
 import usersApi from "./api/users.js";
 import config from "./config.js";
 import logger from "./utils/logger.js";
+import { Stopwatch } from "./utils/TimeUtils.js";
 
 const { CORS_DOMAIN = "localhost|127\\.0\\.0\\.1" } = process.env;
 logger.debug({ CORS_DOMAIN });
-const stopwatch = new Stopwatch(true);
+const stopwatch = new Stopwatch({ autostart: true });
 logger.info("starting...");
 
 const app = new Hono();

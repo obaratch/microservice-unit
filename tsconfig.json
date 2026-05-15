@@ -11,6 +11,7 @@
 		"allowJs": true,
 		"checkJs": false,
 		"jsx": "react-jsx",
+		"lib": ["ES2024", "DOM", "ESNext.Temporal"],
 		"noEmit": true,
 		"skipLibCheck": true,
 		"types": ["vite/client", "node"]
