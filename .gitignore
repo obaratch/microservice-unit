@@ -6,6 +6,7 @@ node_modules
 log/
 config/local.*
 app-frontend/dist/*
+app-backend/dist/*
 sqlite/
 
 

@@ -1,8 +1,8 @@
-const { Hono } = require("hono");
-const router = new Hono();
-const logger = require("../utils/logger");
+import { Hono } from "hono";
+import { Sequelize, DataTypes } from "sequelize";
+import logger from "../utils/logger.js";
 
-const { Sequelize, DataTypes } = require("sequelize");
+const router = new Hono();
 const sequelize = new Sequelize({
   dialect: "sqlite",
   storage: "sqlite/db.sqlite",
@@ -45,4 +45,4 @@ const getUsers = async (c) => {
 router.get("", getUsers);
 router.get("/", getUsers);
 
-module.exports = router;
+export default router;

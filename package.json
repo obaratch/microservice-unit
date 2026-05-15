@@ -2,6 +2,7 @@
   "name": "@obalab/microservice-unit",
   "description": "a micro-webservice scaffold",
   "version": "0.0.0",
+  "type": "module",
   "author": "Takashi Obara",
   "license": "MIT",
   "engines": {
@@ -13,10 +14,12 @@
     "stop": "scripts/force-quit-apps.sh",
     "start": "run-p start-backend start-frontend >> log/all.log 2>&1",
     "start-frontend-dev": "vite --host",
+    "build": "run-p build-backend build-frontend",
     "build-frontend": "vite build --mode production",
     "start-frontend": "serve -s -n -u -l 8080 app-frontend/dist",
-    "start-backend-dev": "cross-env NODE_ENV=dev node --watch-path=app-backend/src app-backend/src/main.js | pino-pretty -c -t SYS:'yyyy-mm-dd HH:MM:ss.l' -i hostname",
-    "start-backend": "node app-backend/src/main.js"
+    "build-backend": "tsc -p tsconfig.backend.json",
+    "start-backend-dev": "cross-env NODE_ENV=dev tsx watch app-backend/src/main.ts | pino-pretty -c -t SYS:'yyyy-mm-dd HH:MM:ss.l' -i hostname",
+    "start-backend": "npm run build-backend && node app-backend/dist/main.js"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^7.2.0",
@@ -28,12 +31,13 @@
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.15.1",
     "sass": "^1.99.0",
+    "tsx": "^4.22.0",
+    "typescript": "^6.0.3",
     "vite": "^8.0.13"
   },
   "dependencies": {
     "@hono/node-server": "^2.0.2",
     "axios": "^1.16.1",
-    "config": "^4.4.1",
     "cross-env": "^10.1.0",
     "hono": "^4.12.18",
     "http-status-codes": "^2.3.0",

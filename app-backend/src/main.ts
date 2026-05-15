@@ -1,14 +1,15 @@
-const config = require("config");
-const logger = require("./utils/logger");
+import { serve } from "@hono/node-server";
+import { Hono } from "hono";
+import { cors } from "hono/cors";
+import { secureHeaders } from "hono/secure-headers";
+import Stopwatch from "statman-stopwatch";
+import errorTestApi from "./api/errortest.js";
+import usersApi from "./api/users.js";
+import config from "./config.js";
+import logger from "./utils/logger.js";
+
 const { CORS_DOMAIN = "localhost|127\\.0\\.0\\.1" } = process.env;
 logger.debug({ CORS_DOMAIN });
-
-const { serve } = require("@hono/node-server");
-const { Hono } = require("hono");
-const { cors } = require("hono/cors");
-const { secureHeaders } = require("hono/secure-headers");
-
-const Stopwatch = require("statman-stopwatch");
 const stopwatch = new Stopwatch(true);
 logger.info("starting...");
 
@@ -27,9 +28,6 @@ app.use(logger.honoLog);
 app.get("/healthcheck", (c) => {
   return c.text("ok");
 });
-
-const errorTestApi = require("./api/errortest");
-const usersApi = require("./api/users");
 
 app.route("/api/errortest", errorTestApi);
 app.route("/api/errortest/", errorTestApi);

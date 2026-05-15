@@ -1,5 +1,6 @@
-const { StatusCodes } = require("http-status-codes");
-const { Hono } = require("hono");
+import { StatusCodes } from "http-status-codes";
+import { Hono } from "hono";
+
 const router = new Hono();
 
 const _status = (status) => {
@@ -26,4 +27,4 @@ router.get("/", getErrorTest);
 router.post("", postErrorTest);
 router.post("/", postErrorTest);
 
-module.exports = router;
+export default router;

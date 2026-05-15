@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "rootDir": "app-backend/src",
+    "outDir": "app-backend/dist",
+    "noEmit": false,
+    "allowJs": false,
+    "sourceMap": true
+  },
+  "include": ["app-backend/src/**/*.ts"]
+}

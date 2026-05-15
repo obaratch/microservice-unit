@@ -33,7 +33,7 @@ find_repo_pids() {
   # npm-run-allやcross-envのようにポートを直接持たない親プロセスも拾えるよう、
   # このリポジトリ配下で起動した開発用コマンドを探す。
   ps -axo pid=,command= 2>/dev/null |
-    awk -v root="$ROOT_DIR" 'index($0, root) && (index($0, "npm run dev") || index($0, "run-p start-backend-dev start-frontend-dev") || index($0, "vite") || index($0, "node --watch app-backend/src/main.js") || index($0, "app-backend/src/main.js")) { print $1 }'
+    awk -v root="$ROOT_DIR" 'index($0, root) && (index($0, "npm run dev") || index($0, "run-p start-backend-dev start-frontend-dev") || index($0, "vite") || index($0, "tsx watch app-backend/src/main.ts") || index($0, "tsx app-backend/src/main.ts") || index($0, "app-backend/src/main.ts") || index($0, "app-backend/dist/main.js")) { print $1 }'
 }
 
 unique_pids() {

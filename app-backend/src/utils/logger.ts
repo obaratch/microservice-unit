@@ -1,8 +1,13 @@
-const config = require("config");
+import pino from "pino";
+import config from "../config.js";
 
-const logger = require("pino")();
+type AppLogger = pino.Logger & {
+  honoLog: (c: any, next: () => Promise<void>) => Promise<void>;
+};
 
-logger.level = logger.levels.values[config.server.log.level];
+const logger = pino() as AppLogger;
+
+logger.level = config.log.level;
 
 logger.honoLog = async (c, next) => {
   const { req } = c;
@@ -25,4 +30,4 @@ logger.honoLog = async (c, next) => {
   await next();
 };
 
-module.exports = logger;
+export default logger;
