@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"target": "ES2024",
+		"module": "Preserve",
+		"moduleResolution": "Bundler",
+		"moduleDetection": "force",
+		"strict": false,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"allowJs": true,
+		"checkJs": false,
+		"jsx": "react-jsx",
+		"lib": ["ES2024", "DOM", "ESNext.Temporal"],
+		"noEmit": true,
+		"skipLibCheck": true,
+		"types": ["vite/client", "node"]
+	},
+	"include": [
+		"app-backend/src/**/*.ts",
+		"app-frontend/src/**/*.ts",
+		"app-frontend/src/**/*.tsx",
+		"config/**/*.ts",
+		"vite.config.ts",
+		"vitest.config.ts"
+	]
+}
