@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { APP_VERSION, BUILD_TIME } from "./config";
+import { formatEpochMillisecondsInBrowserTimeZone } from "./utils/DatetimeUtils";
 import { HttpCilent } from "./utils/HttpUilts";
 
 type User = {
@@ -61,7 +62,9 @@ export const App = () => {
 					<Link to="/">
 						<div className="logo">Micro Vite App Example</div>
 						<span className="version">v{APP_VERSION}</span>
-						<span className="buildtime">build: {BUILD_TIME.toISOString()}</span>
+						<span className="buildtime">
+							build: {formatEpochMillisecondsInBrowserTimeZone(BUILD_TIME)}
+						</span>
 					</Link>
 				</header>
 				<Routes>
