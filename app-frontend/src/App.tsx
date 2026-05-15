@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { APP_VERSION, BUILD_TIME } from "./config";
 import { formatEpochMillisecondsInBrowserTimeZone } from "./utils/DatetimeUtils";
-import { HttpCilent } from "./utils/HttpUilts";
+import { HttpClient } from "./utils/HttpUilts";
 
 type User = {
 	id: string;
@@ -29,7 +29,7 @@ const Users = () => {
 	React.useEffect(() => {
 		if (users) return;
 		const fetchUsers = async () => {
-			setUsers(await HttpCilent.get("/api/users"));
+			setUsers(await HttpClient.get("/api/users"));
 		};
 		fetchUsers();
 	}, [users]);
@@ -50,7 +50,7 @@ const Users = () => {
 export const App = () => {
 	React.useEffect(() => {
 		const fetchHealth = async () => {
-			const health = await HttpCilent.get("/healthcheck");
+			const health = await HttpClient.get("/healthcheck");
 			console.log({ health });
 		};
 		fetchHealth();
