@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { HttpCilent } from "./utils/HttpUilts";
 import { APP_VERSION, BUILD_TIME } from "./config";
 
@@ -20,10 +20,13 @@ const Home = () => {
 
 const Users = () => {
   const [users, setUsers] = React.useState();
-  React.useEffect(async () => {
+  React.useEffect(() => {
     if (users) return;
-    setUsers(await HttpCilent.get("/api/users"));
-  });
+    const fetchUsers = async () => {
+      setUsers(await HttpCilent.get("/api/users"));
+    };
+    fetchUsers();
+  }, [users]);
   console.log({ users });
   if (!users) return null;
   const list = users.map(({ id, name }) => (
@@ -39,10 +42,13 @@ const Users = () => {
 };
 
 export const App = () => {
-  React.useEffect(async () => {
-    const health = await HttpCilent.get("/healthcheck");
-    console.log({ health });
-  });
+  React.useEffect(() => {
+    const fetchHealth = async () => {
+      const health = await HttpCilent.get("/healthcheck");
+      console.log({ health });
+    };
+    fetchHealth();
+  }, []);
   return (
     <div className="app-outer">
       <BrowserRouter>
@@ -53,8 +59,10 @@ export const App = () => {
             <span className="buildtime">build: {BUILD_TIME.toISOString()}</span>
           </Link>
         </header>
-        <Route exact path="/" component={Home} />
-        <Route path="/users" component={Users} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/users" element={<Users />} />
+        </Routes>
       </BrowserRouter>
       <footer>(c) Obalab 2021</footer>
     </div>

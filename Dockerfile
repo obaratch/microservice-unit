@@ -1,5 +1,5 @@
 # BUILD
-FROM node:16-alpine AS build
+FROM node:26-alpine AS build
 
 WORKDIR /home/node
 
@@ -19,8 +19,8 @@ RUN chown -R node:node ./app-frontend
 RUN npm run build-frontend
 
 # PACK
-FROM node:16-alpine
-EXPOSE 80 3000
+FROM node:26-alpine
+EXPOSE 8080 3000
 
 WORKDIR /home/node
 
@@ -32,7 +32,7 @@ RUN apk --update add tzdata && \
 RUN apk add sqlite
 
 COPY ./package*.json ./
-RUN npm i --production
+RUN npm ci --omit=dev
 
 COPY ./config ./config
 COPY ./app-backend/src ./app-backend/src

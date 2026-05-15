@@ -1,7 +1,7 @@
 const config = require("config");
 const _ = require("lodash");
 const logger = require("./utils/logger");
-const { CORS_DOMAIN = "localhost" } = process.env;
+const { CORS_DOMAIN = "localhost|127\\.0\\.0\\.1" } = process.env;
 logger.debug({ CORS_DOMAIN });
 
 const express = require("express");

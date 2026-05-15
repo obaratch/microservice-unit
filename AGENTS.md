@@ -12,4 +12,5 @@
 ## 主要ドキュメント
 - [project-status.md](./docs/project-status.md): プロジェクトの現状や今後の予定
 - [git.md](./docs/git.md): gitの運用ルール
+- [npm.md](./docs/npm.md): npmの運用ルール
 - [tests.md](./docs/tests.md): テストコードの記述方針
