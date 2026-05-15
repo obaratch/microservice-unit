@@ -1,5 +1,5 @@
-const express = require("express");
-const router = express.Router();
+const { Hono } = require("hono");
+const router = new Hono();
 const logger = require("../utils/logger");
 
 const { Sequelize, DataTypes } = require("sequelize");
@@ -37,9 +37,12 @@ const User = sequelize.define(
   logger.debug({ admin });
 })();
 
-router.get("/", async (req, res) => {
+const getUsers = async (c) => {
   const users = (await User.findAll()).map((user) => user.toJSON());
-  res.send(users);
-});
+  return c.json(users);
+};
+
+router.get("", getUsers);
+router.get("/", getUsers);
 
 module.exports = router;

@@ -1,19 +1,29 @@
 const { StatusCodes } = require("http-status-codes");
-const express = require("express");
-const router = express.Router();
+const { Hono } = require("hono");
+const router = new Hono();
 
-const _send = (resp, status) => {
-  resp.status(status || StatusCodes.INTERNAL_SERVER_ERROR).send("error-test");
+const _status = (status) => {
+  const statusCode = Number(status || StatusCodes.INTERNAL_SERVER_ERROR);
+  const isValidStatus = Number.isInteger(statusCode) && statusCode >= 100 && statusCode <= 599;
+  return isValidStatus ? statusCode : StatusCodes.INTERNAL_SERVER_ERROR;
 };
 
-router.get("/", async (req, res) => {
-  const { status } = req.query;
-  _send(res, status);
-});
+const getErrorTest = async (c) => {
+  const status = c.req.query("status");
+  return c.text("error-test", _status(status));
+};
 
-router.post("/", async (req, res) => {
-  const { status } = req.body;
-  _send(res, status);
-});
+const postErrorTest = async (c) => {
+  const contentType = c.req.header("content-type") || "";
+  const body = contentType.includes("application/json")
+    ? await c.req.json().catch(() => ({}))
+    : await c.req.parseBody().catch(() => ({}));
+  return c.text("error-test", _status(body.status));
+};
+
+router.get("", getErrorTest);
+router.get("/", getErrorTest);
+router.post("", postErrorTest);
+router.post("/", postErrorTest);
 
 module.exports = router;

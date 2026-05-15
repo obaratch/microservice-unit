@@ -1,35 +1,43 @@
 const config = require("config");
-const _ = require("lodash");
 const logger = require("./utils/logger");
 const { CORS_DOMAIN = "localhost|127\\.0\\.0\\.1" } = process.env;
 logger.debug({ CORS_DOMAIN });
 
-const express = require("express");
-const helmet = require("helmet");
-const cors = require("cors");
+const { serve } = require("@hono/node-server");
+const { Hono } = require("hono");
+const { cors } = require("hono/cors");
+const { secureHeaders } = require("hono/secure-headers");
 
 const Stopwatch = require("statman-stopwatch");
 const stopwatch = new Stopwatch(true);
 logger.info("starting...");
 
-const app = express();
+const app = new Hono();
 
-app.use(helmet());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: new RegExp(CORS_DOMAIN) }));
+app.use(secureHeaders());
+const corsOrigin = new RegExp(CORS_DOMAIN);
+app.use(
+  cors({
+    origin: (origin) => (corsOrigin.test(origin) ? origin : null),
+  })
+);
 
-app.use(logger.expressLog);
+app.use(logger.honoLog);
 
-app.get("/healthcheck", (req, res) => {
-  res.send("ok");
+app.get("/healthcheck", (c) => {
+  return c.text("ok");
 });
 
-app.use("/api/errortest", require("./api/errortest"));
-app.use("/api/users", require("./api/users"));
+const errorTestApi = require("./api/errortest");
+const usersApi = require("./api/users");
+
+app.route("/api/errortest", errorTestApi);
+app.route("/api/errortest/", errorTestApi);
+app.route("/api/users", usersApi);
+app.route("/api/users/", usersApi);
 
 const { port } = config.server;
-app.listen(port, () => {
+serve({ fetch: app.fetch, hostname: "127.0.0.1", port }, () => {
   logger.info({ port }, "server listening");
 
   stopwatch.stop();
