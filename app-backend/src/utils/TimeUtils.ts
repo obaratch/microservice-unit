@@ -3,8 +3,8 @@ type StopwatchOptions = {
 };
 
 export class Stopwatch {
-	#startTime: Temporal.Instant | null = null;
-	#stopTime: Temporal.Instant | null = null;
+	#startTime: number | null = null;
+	#stopTime: number | null = null;
 
 	constructor(options: StopwatchOptions = {}) {
 		if (options.autostart) {
@@ -13,14 +13,14 @@ export class Stopwatch {
 	}
 
 	start(): this {
-		this.#startTime = Temporal.Now.instant();
+		this.#startTime = performance.now();
 		this.#stopTime = null;
 		return this;
 	}
 
 	stop(): this {
 		if (this.#startTime !== null) {
-			this.#stopTime = Temporal.Now.instant();
+			this.#stopTime = performance.now();
 		}
 		return this;
 	}
@@ -30,10 +30,8 @@ export class Stopwatch {
 			return 0;
 		}
 
-		const endTime = this.#stopTime ?? Temporal.Now.instant();
-		const elapsedMilliseconds = endTime
-			.since(this.#startTime)
-			.total("milliseconds");
+		const endTime = this.#stopTime ?? performance.now();
+		const elapsedMilliseconds = endTime - this.#startTime;
 		return Number(elapsedMilliseconds.toFixed(precision));
 	}
 }

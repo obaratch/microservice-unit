@@ -4,7 +4,8 @@
 
 ---
 
-An opinionated scaffold to quickly create a micro-webservice with React in the frontend and NodeJS/SQLite in the backend
+An opinionated scaffold to quickly create a micro-webservice with React in the
+frontend and Node.js/SQLite in the backend.
 
 Primary use-cases in mind are:
 
@@ -17,7 +18,11 @@ But of course it is all up to you.
 
 ## Install
 
-No installer yet. Just clone or fork.
+No installer yet. Clone or fork this repository, then install dependencies.
+
+```sh
+npm install
+```
 
 ## Structure (My Choice of tools)
 
@@ -26,18 +31,38 @@ No installer yet. Just clone or fork.
 - React
 - Sass/SCSS
 - Vite
+- React Router
 
 ### Backend
 
-- NodeJS
-- Express
+- Node.js
+- Hono
 - Sequelize
 - SQLite
 
-### common
+### Common
 
 - Docker / docker-compose
-- Jest
+- TypeScript
+- Vitest
+- Biome
+- oxlint
+
+## Scripts
+
+- `npm run dev`: start backend and frontend in development mode
+- `npm run stop`: force-quit local development processes
+- `npm run build`: build backend and frontend
+- `npm start`: build the backend and start backend/frontend servers
+- `npm test`: run Vitest
+- `npm run check`: run TypeScript, Biome, and oxlint checks
+- `npm run format`: format files with Biome
+
+## Local Ports
+
+- Frontend dev server: `http://localhost:8080`
+- Backend API server: `http://localhost:3000`
+- Health check: `http://localhost:3000/healthcheck`
 
 ## Develop
 
@@ -47,8 +72,15 @@ No installer yet. Just clone or fork.
    - package name (package.json)
    - image/container name (docker-compose.yml)
 3. `npm install` to initialize the dependencies
-4. `npm run start-dev` to start locally in dev mode
+4. `npm run dev` to start locally in dev mode
 5. Have fun hacking
+
+Before committing changes, run:
+
+```sh
+npm run format
+npm run check
+```
 
 ## Deploy
 

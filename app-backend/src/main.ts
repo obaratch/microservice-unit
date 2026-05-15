@@ -35,7 +35,7 @@ app.route("/api/users", usersApi);
 app.route("/api/users/", usersApi);
 
 const { port } = config.server;
-serve({ fetch: app.fetch, hostname: "127.0.0.1", port }, () => {
+serve({ fetch: app.fetch, hostname: "0.0.0.0", port }, () => {
 	logger.info({ port }, "server listening");
 
 	stopwatch.stop();

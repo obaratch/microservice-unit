@@ -23,7 +23,7 @@
 		"start:frontend": "serve -s -n -u -l 8080 app-frontend/dist",
 		"build:backend": "tsc -p tsconfig.backend.json",
 		"start:backend:dev": "cross-env NODE_ENV=dev tsx watch app-backend/src/main.ts | pino-pretty -c -t SYS:'yyyy-mm-dd HH:MM:ss.l' -i hostname",
-		"start:backend": "npm run build:backend && node app-backend/dist/main.js"
+		"start:backend": "node app-backend/dist/main.js"
 	},
 	"devDependencies": {
 		"@fortawesome/fontawesome-free": "^7.2.0",
