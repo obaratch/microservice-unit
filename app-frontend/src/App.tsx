@@ -1,7 +1,12 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { HttpCilent } from "./utils/HttpUilts";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { APP_VERSION, BUILD_TIME } from "./config";
+import { HttpCilent } from "./utils/HttpUilts";
+
+type User = {
+	id: string;
+	name: string;
+};
 
 const Home = () => {
 	return (
@@ -19,7 +24,7 @@ const Home = () => {
 };
 
 const Users = () => {
-	const [users, setUsers] = React.useState();
+	const [users, setUsers] = React.useState<User[]>();
 	React.useEffect(() => {
 		if (users) return;
 		const fetchUsers = async () => {

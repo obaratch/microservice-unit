@@ -18,7 +18,7 @@
 	"include": [
 		"app-backend/src/**/*.ts",
 		"app-frontend/src/**/*.ts",
-		"app-frontend/src/**/*.jsx",
+		"app-frontend/src/**/*.tsx",
 		"config/**/*.ts",
 		"vite.config.ts",
 		"vitest.config.ts"

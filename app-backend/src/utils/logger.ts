@@ -1,8 +1,9 @@
+import type { Context, Next } from "hono";
 import pino from "pino";
 import config from "../config.js";
 
 type AppLogger = pino.Logger & {
-	honoLog: (c: any, next: () => Promise<void>) => Promise<void>;
+	honoLog: (c: Context, next: Next) => Promise<void>;
 };
 
 const logger = pino() as AppLogger;

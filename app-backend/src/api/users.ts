@@ -1,5 +1,6 @@
+import type { Context } from "hono";
 import { Hono } from "hono";
-import { Sequelize, DataTypes } from "sequelize";
+import { DataTypes, Sequelize } from "sequelize";
 import logger from "../utils/logger.js";
 
 const router = new Hono();
@@ -37,7 +38,7 @@ const User = sequelize.define(
 	logger.debug({ admin });
 })();
 
-const getUsers = async (c) => {
+const getUsers = async (c: Context) => {
 	const users = (await User.findAll()).map((user) => user.toJSON());
 	return c.json(users);
 };

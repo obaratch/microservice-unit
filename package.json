@@ -15,7 +15,7 @@
 		"start": "run-p start-backend start-frontend >> log/all.log 2>&1",
 		"start-frontend-dev": "vite --host",
 		"build": "run-p build-backend build-frontend",
-		"check": "biome check . && oxlint",
+		"check": "tsc -p tsconfig.check.json --noEmit && biome check . && oxlint",
 		"format": "biome format --write .",
 		"test": "vitest run --config vitest.config.ts",
 		"test:watch": "vitest --config vitest.config.ts",

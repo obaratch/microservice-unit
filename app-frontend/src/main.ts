@@ -4,6 +4,10 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App";
 
-createRoot(document.getElementById("app-root")).render(
-	React.createElement(App),
-);
+const appRoot = document.getElementById("app-root");
+
+if (!appRoot) {
+	throw new Error("app-root element not found");
+}
+
+createRoot(appRoot).render(React.createElement(App));
